@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Editors / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local data: songs, Rig Manager snapshots, exported rigs. Never committed.
+# data/README.md describes what goes here and how to regenerate it.
+data/*
+!data/README.md
+
+# Scratch kemper-match projects made while developing
+/projects/
