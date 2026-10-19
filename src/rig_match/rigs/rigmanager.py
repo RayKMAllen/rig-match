@@ -13,7 +13,7 @@ metadata Rig Manager shows in its list view: Name, Author, Gain, "Amp Name",
 id whose ``data`` column is the raw rig, byte-for-byte a ``.krig`` file.
 
 Only reading is supported, and only metadata plus raw blobs. Decoding a blob
-is :mod:`kemper_match.rigs.parser`'s job. Only rigs are read; performances and
+is :mod:`rig_match.rigs.parser`'s job. Only rigs are read; performances and
 presets are out of scope.
 """
 

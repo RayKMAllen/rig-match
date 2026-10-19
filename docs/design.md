@@ -933,7 +933,7 @@ The CLI should support scripted, repeatable workflows and should prioritize anal
 ## Initialize Project
 
 ```bash
-kemper-match init ./my_project
+rig-match init ./my_project
 ```
 
 Creates:
@@ -954,13 +954,13 @@ my_project/
 ## Import Songs
 
 ```bash
-kemper-match import-audio ./audio_folder --project ./my_project
+rig-match import-audio ./audio_folder --project ./my_project
 ```
 
 Optional metadata import:
 
 ```bash
-kemper-match import-playlist spotify_playlist_url --metadata-only --project ./my_project
+rig-match import-playlist spotify_playlist_url --metadata-only --project ./my_project
 ```
 
 Spotify import must remain metadata-only.
@@ -970,13 +970,13 @@ Spotify import must remain metadata-only.
 ## Separate Stems
 
 ```bash
-kemper-match separate --project ./my_project --song song_id
+rig-match separate --project ./my_project --song song_id
 ```
 
 Batch mode:
 
 ```bash
-kemper-match separate --project ./my_project --all
+rig-match separate --project ./my_project --all
 ```
 
 ---
@@ -984,7 +984,7 @@ kemper-match separate --project ./my_project --all
 ## Analyze Song Structure and Tones
 
 ```bash
-kemper-match analyze --project ./my_project --song song_id
+rig-match analyze --project ./my_project --song song_id
 ```
 
 Outputs:
@@ -1000,7 +1000,7 @@ analysis/song_id/features.json
 ## Import Rig Library
 
 ```bash
-kemper-match import-rigs ./kemper_rigs --project ./my_project
+rig-match import-rigs ./kemper_rigs --project ./my_project
 ```
 
 Indexes local `.krig`, `.kipr`, and `.kpreset` files where possible.
@@ -1010,7 +1010,7 @@ Indexes local `.krig`, `.kipr`, and `.kpreset` files where possible.
 ## Recommend Rigs
 
 ```bash
-kemper-match recommend --project ./my_project --song song_id
+rig-match recommend --project ./my_project --song song_id
 ```
 
 Outputs top candidates per detected tone.
@@ -1020,7 +1020,7 @@ Outputs top candidates per detected tone.
 ## Record DI
 
 ```bash
-kemper-match record-di --project ./my_project --song song_id --tone tone_A
+rig-match record-di --project ./my_project --song song_id --tone tone_A
 ```
 
 Optional parameters:
@@ -1036,7 +1036,7 @@ Optional parameters:
 ## Capture Kemper Render
 
 ```bash
-kemper-match capture-render --project ./my_project --song song_id --tone tone_A --rig rig_id
+rig-match capture-render --project ./my_project --song song_id --tone tone_A --rig rig_id
 ```
 
 This records the Kemper output after the user manually loads the candidate rig.
@@ -1046,7 +1046,7 @@ This records the Kemper output after the user manually loads the candidate rig.
 ## Compare Render to Target
 
 ```bash
-kemper-match compare --project ./my_project --song song_id --tone tone_A --render render_id
+rig-match compare --project ./my_project --song song_id --tone tone_A --render render_id
 ```
 
 Outputs perceptual distance metrics and EQ suggestions.
@@ -1056,7 +1056,7 @@ Outputs perceptual distance metrics and EQ suggestions.
 ## Optimize Rig Settings
 
 ```bash
-kemper-match optimize --project ./my_project --song song_id --tone tone_A --rig rig_id
+rig-match optimize --project ./my_project --song song_id --tone tone_A --rig rig_id
 ```
 
 The MVP may output suggested settings without automating the Kemper.
@@ -1066,7 +1066,7 @@ The MVP may output suggested settings without automating the Kemper.
 ## Export Performance Plan
 
 ```bash
-kemper-match export --project ./my_project --song song_id --format json
+rig-match export --project ./my_project --song song_id --format json
 ```
 
 Optional:

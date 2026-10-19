@@ -10,11 +10,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from kemper_match.project import Project
+from rig_match.project import Project
 
 STEM_NAMES = ("guitar", "vocals", "bass", "drums", "other")
 
 
 def separate_song(project: Project, song_id: str) -> dict[str, Path]:
     """Separate one song; return a mapping stem name -> written file."""
-    raise NotImplementedError("stem separation (plans/development-plan.md, milestone 3)")
+    raise NotImplementedError("stem separation (docs/development-plan.md, milestone 3)")

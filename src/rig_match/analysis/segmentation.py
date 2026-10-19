@@ -8,8 +8,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from kemper_match.project import Project
+from rig_match.project import Project
 
 
 def segment_tones(project: Project, song_id: str) -> Path:
-    raise NotImplementedError("tone segmentation (plans/development-plan.md, milestone 5)")
+    raise NotImplementedError("tone segmentation (docs/development-plan.md, milestone 5)")

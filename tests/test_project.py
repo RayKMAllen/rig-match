@@ -2,8 +2,8 @@ from pathlib import Path
 
 import pytest
 
-from kemper_match.config import CONFIG_FILENAME, Config, load_config, save_config
-from kemper_match.project import SUBDIRS, ProjectError, init_project, load_project
+from rig_match.config import CONFIG_FILENAME, Config, load_config, save_config
+from rig_match.project import SUBDIRS, ProjectError, init_project, load_project
 
 
 def test_init_creates_tree_and_config(tmp_path: Path) -> None:

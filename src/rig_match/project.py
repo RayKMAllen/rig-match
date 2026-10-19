@@ -1,4 +1,4 @@
-"""A kemper-match project: the directory layout every command works inside.
+"""A rig-match project: the directory layout every command works inside.
 
 Nothing lives only in memory. Each pipeline stage reads its inputs from the
 project tree and writes its outputs back as files, so every intermediate
@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 
-from kemper_match.config import CONFIG_FILENAME, Config, load_config, save_config
+from rig_match.config import CONFIG_FILENAME, Config, load_config, save_config
 
 SUBDIRS = ("songs", "stems", "analysis", "rigs", "renders", "exports")
 
@@ -105,7 +105,7 @@ def init_project(root: Path, config: Config | None = None) -> Project:
     """
     root = Path(root)
     if (root / CONFIG_FILENAME).exists():
-        raise ProjectError(f"{root} is already a kemper-match project")
+        raise ProjectError(f"{root} is already a rig-match project")
     root.mkdir(parents=True, exist_ok=True)
     for name in SUBDIRS:
         (root / name).mkdir(exist_ok=True)
@@ -118,5 +118,5 @@ def load_project(root: Path) -> Project:
     root = Path(root)
     config_path = root / CONFIG_FILENAME
     if not config_path.exists():
-        raise ProjectError(f"no {CONFIG_FILENAME} in {root} (run `kemper-match init {root}` first)")
+        raise ProjectError(f"no {CONFIG_FILENAME} in {root} (run `rig-match init {root}` first)")
     return Project(root=root, config=load_config(config_path))

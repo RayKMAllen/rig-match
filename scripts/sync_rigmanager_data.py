@@ -30,7 +30,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from kemper_match.rigs.rigmanager import export_rig_files, read_rigs  # noqa: E402
+from rig_match.rigs.rigmanager import export_rig_files, read_rigs  # noqa: E402
 
 # Library DBs to copy, relative to the Rig Manager root. The 80k Profile Pack
 # (500 MB) and the big commercial packs are deliberately left out.

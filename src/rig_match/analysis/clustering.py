@@ -8,8 +8,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from kemper_match.project import Project
+from rig_match.project import Project
 
 
 def cluster_tones(project: Project, song_id: str) -> Path:
-    raise NotImplementedError("tone clustering (plans/development-plan.md, milestone 7)")
+    raise NotImplementedError("tone clustering (docs/development-plan.md, milestone 7)")

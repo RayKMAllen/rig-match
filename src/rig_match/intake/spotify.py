@@ -6,8 +6,8 @@ and metadata is matched to them.
 
 from __future__ import annotations
 
-from kemper_match.project import Project
+from rig_match.project import Project
 
 
 def import_playlist(project: Project, url: str) -> list[dict[str, str]]:
-    raise NotImplementedError("Spotify playlist metadata import (plans/development-plan.md, milestone 2)")
+    raise NotImplementedError("Spotify playlist metadata import (docs/development-plan.md, milestone 2)")

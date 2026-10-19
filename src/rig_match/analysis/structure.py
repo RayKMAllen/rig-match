@@ -8,8 +8,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from kemper_match.project import Project
+from rig_match.project import Project
 
 
 def detect_sections(project: Project, song_id: str) -> Path:
-    raise NotImplementedError("structure detection (plans/development-plan.md, milestone 4)")
+    raise NotImplementedError("structure detection (docs/development-plan.md, milestone 4)")

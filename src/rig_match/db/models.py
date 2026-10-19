@@ -11,4 +11,4 @@ from pathlib import Path
 
 
 def connect(path: Path) -> sqlite3.Connection:
-    raise NotImplementedError("rig database schema (plans/development-plan.md, milestone 8)")
+    raise NotImplementedError("rig database schema (docs/development-plan.md, milestone 8)")

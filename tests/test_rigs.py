@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from kemper_match.rigs import parser, rigmanager
+from rig_match.rigs import parser, rigmanager
 from tests.conftest import DATA_DIR, LOCAL_LIBRARY_DB, requires_local_data
 
 

@@ -24,5 +24,11 @@ Thumbs.db
 data/*
 !data/README.md
 
-# Scratch kemper-match projects made while developing
+# Scratch rig-match projects made while developing
 /projects/
+
+# Claude Code local state
+.claude/
+
+# Secrets (Spotify credentials are read from the environment)
+.env

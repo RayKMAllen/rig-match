@@ -2,9 +2,9 @@ from pathlib import Path
 
 from typer.testing import CliRunner
 
-from kemper_match import __version__
-from kemper_match.cli.main import app
-from kemper_match.config import CONFIG_FILENAME
+from rig_match import __version__
+from rig_match.cli.main import app
+from rig_match.config import CONFIG_FILENAME
 
 runner = CliRunner()
 

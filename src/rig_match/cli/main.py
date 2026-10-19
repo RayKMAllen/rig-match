@@ -1,7 +1,7 @@
-"""kemper-match command-line interface.
+"""rig-match command-line interface.
 
 One command per pipeline stage. A stage that is not built yet exits with
-status 2 and says so; the order of work is in plans/development-plan.md.
+status 2 and says so; the order of work is in docs/development-plan.md.
 """
 
 from __future__ import annotations
@@ -14,12 +14,12 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from kemper_match import __version__
-from kemper_match import project as prj
-from kemper_match.project import Project, ProjectError, init_project, load_project
+from rig_match import __version__
+from rig_match import project as prj
+from rig_match.project import Project, ProjectError, init_project, load_project
 
 app = typer.Typer(
-    name="kemper-match",
+    name="rig-match",
     help="Match songs to Kemper rigs: import, separate, analyze, recommend, export.",
     no_args_is_help=True,
     add_completion=False,
@@ -28,14 +28,14 @@ console = Console()
 err = Console(stderr=True)
 
 PROJECT_OPTION = typer.Option(
-    ..., "--project", "-p", help="kemper-match project directory (created by `init`)."
+    ..., "--project", "-p", help="rig-match project directory (created by `init`)."
 )
 SONG_OPTION = typer.Option(..., "--song", "-s", help="Song id (a directory name under songs/).")
 
 
 def _version_callback(value: bool) -> None:
     if value:
-        console.print(f"kemper-match {__version__}")
+        console.print(f"rig-match {__version__}")
         raise typer.Exit()
 
 
@@ -91,7 +91,7 @@ def import_audio_cmd(
     project: Path = PROJECT_OPTION,
 ) -> None:
     """Import local audio into the project (converted to WAV, tags read into metadata.json)."""
-    from kemper_match.intake.audio_import import import_audio
+    from rig_match.intake.audio_import import import_audio
 
     song_ids = _run(import_audio, _open_project(project), source)
     console.print(f"Imported {len(song_ids)} song(s).")
@@ -106,7 +106,7 @@ def import_playlist_cmd(
     ),
 ) -> None:
     """Import track metadata (title, artist, album, order) from a Spotify playlist."""
-    from kemper_match.intake.spotify import import_playlist
+    from rig_match.intake.spotify import import_playlist
 
     _run(import_playlist, _open_project(project), url)
 
@@ -121,7 +121,7 @@ def separate(
     all_songs: bool = typer.Option(False, "--all", help="Separate every imported song."),
 ) -> None:
     """Run stem separation and write stems/<song_id>/{guitar,vocals,bass,drums,other}.wav."""
-    from kemper_match.separation.demucs_runner import separate_song
+    from rig_match.separation.demucs_runner import separate_song
 
     if bool(song) == all_songs:
         err.print("[red]error:[/red] give exactly one of --song or --all")
@@ -137,7 +137,7 @@ def separate(
 @app.command()
 def analyze(project: Path = PROJECT_OPTION, song: str = SONG_OPTION) -> None:
     """Detect song structure, segment guitar tones, extract features, cluster into tones."""
-    from kemper_match.analysis import clustering, features, segmentation, structure
+    from rig_match.analysis import clustering, features, segmentation, structure
 
     p = _open_project(project)
     _run(structure.detect_sections, p, song)
@@ -155,7 +155,7 @@ def import_rigs_cmd(
     project: Path = PROJECT_OPTION,
 ) -> None:
     """Index Kemper rigs into the project's rig database."""
-    from kemper_match.rigs.library import import_rigs
+    from rig_match.rigs.library import import_rigs
 
     count = _run(import_rigs, _open_project(project), source)
     console.print(f"Indexed {count} rig(s).")
@@ -164,7 +164,7 @@ def import_rigs_cmd(
 @app.command()
 def recommend(project: Path = PROJECT_OPTION, song: str = SONG_OPTION) -> None:
     """Rank rig candidates for every detected tone of a song."""
-    from kemper_match.rigs.search import recommend_rigs
+    from rig_match.rigs.search import recommend_rigs
 
     _run(recommend_rigs, _open_project(project), song)
 
@@ -179,7 +179,7 @@ def export(
     fmt: str = typer.Option("json", "--format", "-f", help="json, yaml or markdown."),
 ) -> None:
     """Build the Performance slot layout for a song and write it to exports/."""
-    from kemper_match.performance.builder import build_performance, export_performance
+    from rig_match.performance.builder import build_performance, export_performance
 
     p = _open_project(project)
     plan = _run(build_performance, p, song)

@@ -16,11 +16,11 @@
 ## Project Structure
 
 ```text
-rig_pipeline/
+rig-match/
 ├── pyproject.toml
 ├── README.md
 ├── src/
-│   └── kemper_match/
+│   └── rig_match/
 │       ├── __init__.py
 │       ├── cli/
 │       │   ├── __init__.py
@@ -172,7 +172,7 @@ Each rig DB: table `Rigs` (one row per rig; ~36 text columns incl. `Name`,
 
 Rig file container: `KThd` + `KTrk` chunks (SMF-style); the track is a sequence of
 Kemper SysEx messages (`00 20 33`, function byte, body). String parameters are
-decoded; numeric and block parameters are not. See `src/kemper_match/rigs/parser.py`.
+decoded; numeric and block parameters are not. See `src/rig_match/rigs/parser.py`.
 
 `scripts/sync_rigmanager_data.py` snapshots the local library, four small packs
 and two songs into `data/` (git-ignored; see `data/README.md`).
@@ -191,13 +191,13 @@ and two songs into `data/` (git-ignored; see `data/README.md`).
 - [ ] **0.6** Install PyTorch CPU-only: `pip install torch torchaudio --index-url https://download.pytorch.org/whl/cpu`
 - [ ] **0.7** Install remaining dependencies: `pip install demucs librosa scipy numpy soundfile typer rich tqdm pyloudnorm mutagen hdbscan scikit-learn pandas pytest pytest-cov`
 - [ ] **0.8** Verify imports: `python -c "import torch; import demucs; import librosa; import typer; print('All OK')"`
-- [x] **0.9** Create `pyproject.toml` with project metadata, dependencies, and `[project.scripts]` entry point for `kemper-match`
+- [x] **0.9** Create `pyproject.toml` with project metadata, dependencies, and `[project.scripts]` entry point for `rig-match`
 
 ### Milestone 1: Project Scaffolding + CLI Skeleton
 
-- [x] **1.1** Create the directory structure shown above under `src/kemper_match/`
-- [x] **1.2** Implement `kemper_match/cli/main.py` — Typer app with stub commands: `init`, `import-audio`, `import-playlist`, `separate`, `analyze`, `import-rigs`, `recommend`, `export`
-- [x] **1.3** Implement `kemper_match/project.py` — `init` command creates the project directory structure:
+- [x] **1.1** Create the directory structure shown above under `src/rig_match/`
+- [x] **1.2** Implement `rig_match/cli/main.py` — Typer app with stub commands: `init`, `import-audio`, `import-playlist`, `separate`, `analyze`, `import-rigs`, `recommend`, `export`
+- [x] **1.3** Implement `rig_match/project.py` — `init` command creates the project directory structure:
   ```text
   my_project/
     config.yaml
@@ -208,11 +208,11 @@ and two songs into `data/` (git-ignored; see `data/README.md`).
     renders/
     exports/
   ```
-- [x] **1.4** Implement `kemper_match/config.py` — load/save `config.yaml` with defaults (sample rate, stem separation model, etc.)
-- [x] **1.5** Wire up the CLI entry point in `pyproject.toml` so `kemper-match init ./my_project` works
+- [x] **1.4** Implement `rig_match/config.py` — load/save `config.yaml` with defaults (sample rate, stem separation model, etc.)
+- [x] **1.5** Wire up the CLI entry point in `pyproject.toml` so `rig-match init ./my_project` works
 - [x] **1.6** Write tests for project init (directory creation, config defaults)
 
-**Validation checkpoint:** `kemper-match init ./test_project` creates the expected directory tree and config file.
+**Validation checkpoint:** `rig-match init ./test_project` creates the expected directory tree and config file.
 
 ---
 
@@ -235,7 +235,7 @@ and two songs into `data/` (git-ignored; see `data/README.md`).
 - [ ] **2.5** Add Rich progress output during import (file count, conversion progress)
 - [ ] **2.6** Write tests: valid file import, invalid format rejection, metadata extraction, duplicate handling
 
-**Validation checkpoint:** `kemper-match import-audio ./my_songs --project ./test_project` imports audio files, converts to WAV, saves metadata JSON.
+**Validation checkpoint:** `rig-match import-audio ./my_songs --project ./test_project` imports audio files, converts to WAV, saves metadata JSON.
 
 ---
 
@@ -251,7 +251,7 @@ and two songs into `data/` (git-ignored; see `data/README.md`).
 - [ ] **3.4** Add Rich progress output (tqdm for batch, status spinners for single song)
 - [ ] **3.5** Write tests: verify output file creation, handle missing input gracefully, verify stems are valid audio
 
-**Validation checkpoint:** `kemper-match separate --project ./test_project --song <song_id>` produces 5 stem files. `kemper-match separate --project ./test_project --all` processes all imported songs.
+**Validation checkpoint:** `rig-match separate --project ./test_project --song <song_id>` produces 5 stem files. `rig-match separate --project ./test_project --all` processes all imported songs.
 
 ---
 
@@ -273,7 +273,7 @@ and two songs into `data/` (git-ignored; see `data/README.md`).
 - [ ] **4.3** Wire into `analyze` CLI command
 - [ ] **4.4** Write tests with a known song structure (can use a synthetic test audio)
 
-**Validation checkpoint:** `kemper-match analyze --project ./test_project --song <song_id>` produces `sections.json` with reasonable section boundaries.
+**Validation checkpoint:** `rig-match analyze --project ./test_project --song <song_id>` produces `sections.json` with reasonable section boundaries.
 
 ---
 
@@ -349,7 +349,7 @@ and two songs into `data/` (git-ignored; see `data/README.md`).
 - [ ] **7.4** Wire full analysis pipeline into `analyze` CLI command (structure → segmentation → features → clustering)
 - [ ] **7.5** Write tests: identical segments should cluster together, different tones should separate
 
-**Validation checkpoint:** `kemper-match analyze` produces `sections.json`, `tone_segments.json`, `features.json`, and `tones.json`. Clusters match audible tone groupings.
+**Validation checkpoint:** `rig-match analyze` produces `sections.json`, `tone_segments.json`, `features.json`, and `tones.json`. Clusters match audible tone groupings.
 
 ---
 
@@ -379,7 +379,7 @@ per-parameter data.
 - [ ] **8.4** Wire `import-rigs` CLI command
 - [ ] **8.5** Write tests: import a directory of rigs, verify database contents, query by family/gain
 
-**Validation checkpoint:** `kemper-match import-rigs ./kemper_rigs --project ./test_project` indexes rig files into SQLite. Queries return expected results.
+**Validation checkpoint:** `rig-match import-rigs ./kemper_rigs --project ./test_project` indexes rig files into SQLite. Queries return expected results.
 
 ---
 
@@ -405,7 +405,7 @@ per-parameter data.
 - [ ] **9.3** Rich table output in terminal showing tone → top rigs with confidence scores
 - [ ] **9.4** Write tests: mock rig database, verify ranking order, verify family/gain filtering
 
-**Validation checkpoint:** `kemper-match recommend --project ./test_project --song <song_id>` outputs a ranked list of rig candidates per tone.
+**Validation checkpoint:** `rig-match recommend --project ./test_project --song <song_id>` outputs a ranked list of rig candidates per tone.
 
 ---
 
@@ -422,7 +422,7 @@ per-parameter data.
   - Markdown output: human-readable performance sheet
 - [ ] **10.3** Write tests: verify slot assignment logic, verify export format correctness
 
-**Validation checkpoint:** `kemper-match export --project ./test_project --song <song_id> --format json` produces a complete performance plan matching the design doc schema.
+**Validation checkpoint:** `rig-match export --project ./test_project --song <song_id> --format json` produces a complete performance plan matching the design doc schema.
 
 ---
 
@@ -431,7 +431,7 @@ per-parameter data.
 - [ ] **11.1** End-to-end test: import → separate → analyze → recommend → export for a real song
 - [ ] **11.2** Error handling: graceful failures with Rich error panels for missing ffmpeg, corrupt audio, empty rig library
 - [ ] **11.3** Add `--verbose` / `--quiet` flags to all commands
-- [x] **11.4** Add `kemper-match status --project ./my_project` command showing pipeline progress per song (basic version: checks which output files exist)
+- [x] **11.4** Add `rig-match status --project ./my_project` command showing pipeline progress per song (basic version: checks which output files exist)
 - [ ] **11.5** Write README.md with installation instructions, usage examples, and project overview
 - [ ] **11.6** Verify the full pipeline on 2–3 real songs with actual Kemper rigs
 

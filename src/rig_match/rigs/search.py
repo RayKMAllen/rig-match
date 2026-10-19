@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from kemper_match.project import Project
+from rig_match.project import Project
 
 RANKING_WEIGHTS = {
     "amp_family_match": 0.30,
@@ -22,4 +22,4 @@ GAIN_CATEGORIES = ("clean", "edge", "crunch", "hard_rock", "high_gain", "extreme
 
 
 def recommend_rigs(project: Project, song_id: str) -> Path:
-    raise NotImplementedError("rig search and ranking (plans/development-plan.md, milestone 9)")
+    raise NotImplementedError("rig search and ranking (docs/development-plan.md, milestone 9)")

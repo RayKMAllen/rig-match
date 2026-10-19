@@ -7,15 +7,15 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
-from kemper_match.project import Project
+from rig_match.project import Project
 
 MAX_SLOTS = 5
 EXPORT_FORMATS = ("json", "yaml", "markdown")
 
 
 def build_performance(project: Project, song_id: str) -> dict[str, Any]:
-    raise NotImplementedError("performance builder (plans/development-plan.md, milestone 10)")
+    raise NotImplementedError("performance builder (docs/development-plan.md, milestone 10)")
 
 
 def export_performance(project: Project, song_id: str, plan: dict[str, Any], fmt: str) -> Path:
-    raise NotImplementedError("performance export (plans/development-plan.md, milestone 10)")
+    raise NotImplementedError("performance export (docs/development-plan.md, milestone 10)")
