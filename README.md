@@ -2,7 +2,8 @@
 
 Song-to-rig matcher for the Kemper Profiler. Give it songs; it isolates the
 guitar, finds the distinct guitar tones, picks a rig from your library for each
-one and lays them out as a Performance. Command line only; Python 3.11, CPU
+one and lays them out as a Performance. Command line first, desktop UI
+later (milestones 12 to 15); Python 3.11, CPU
 (librosa, scikit-learn, Demucs, SQLite).
 
 - Design: [docs/design.md](docs/design.md)
@@ -70,8 +71,9 @@ Rig Manager install on the Windows side of this machine; see
 
 ## Next
 
-[docs/development-plan.md](docs/development-plan.md), milestones 2 to 11: intake,
-stems, structure, tone segments, features, clustering, rig index, search, export.
+[docs/development-plan.md](docs/development-plan.md), milestones 2 to 15: intake,
+stems, structure, tone segments, features, clustering, rig index, search, export,
+desktop UI.
 
 ## Licence
 

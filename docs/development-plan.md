@@ -439,6 +439,45 @@ per-parameter data.
 
 ---
 
+### Milestone 12: UI Shell + Project View (after M3)
+
+- [ ] **12.1** Shell: local web app, FastAPI backend serving a single-page frontend, opened in a desktop window (pywebview); no Electron
+- [ ] **12.2** Backend endpoints over the project tree: songs and per-stage status, run a stage with progress (import, separate, analyze, recommend, export)
+- [ ] **12.3** Project view: song list with per-stage status, run buttons with progress, errors shown inline
+- [ ] **12.4** Tests: endpoints; a smoke test that launches the app and loads the demo project
+
+**Validation checkpoint:** Import songs and run separation from the window, with progress and errors visible.
+
+---
+
+### Milestone 13: Song View (after M7)
+
+- [ ] **13.1** Waveform of the guitar stem with sections and tone segments drawn on it
+- [ ] **13.2** Click a segment to play it; labels and features per segment
+- [ ] **13.3** Re-run analysis for one song from the view
+
+**Validation checkpoint:** Open an analysed song and see and hear each tone segment.
+
+---
+
+### Milestone 14: Rig Views (after M9)
+
+- [ ] **14.1** Top rigs per tone with scores and rig details; override the choice by hand
+- [ ] **14.2** Rig library browser: search and filter the indexed rigs by family, gain, tags
+
+**Validation checkpoint:** Pick a rig for every tone of a song in the window.
+
+---
+
+### Milestone 15: Performance View (after M10)
+
+- [ ] **15.1** Slot layout on the song timeline; reorder or merge tones
+- [ ] **15.2** Export from the UI in the formats of M10
+
+**Validation checkpoint:** A user can go from raw audio to an exported performance without touching the CLI.
+
+---
+
 ## Data Flow Diagram
 
 ```mermaid
